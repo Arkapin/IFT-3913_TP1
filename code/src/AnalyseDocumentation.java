@@ -6,13 +6,21 @@ public class AnalyseDocumentation {
 
     }
 
-    public void ParseLine(String line) {
+    public void ParseLine(String path) {
 
         int loc=0,
                 cloc=0;
         float dc=0;
-        if(line.contains("//")) loc++; cloc++;
-        if(line.contains("/*")&&line.contains("*/")) loc++; cloc++;
+        boolean commentBlock=false,
+                commentLine=false;
+        String line="\n";
+
+        if(line.contains("//")) commentLine=true;
+        if (line.contains("/*") && !commentBlock) commentBlock = true;
+        if (commentBlock) commentLine=true;
+        if (line.contains("*/") && commentBlock) commentBlock = false;
+
+        if(commentLine) cloc++;
 
         dc = cloc/loc;
     }
