@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class AnalyseDocumentation {
 
     public static void main(String[] args) {
@@ -6,14 +8,16 @@ public class AnalyseDocumentation {
 
     }
 
-    public void ParseLine(String path) {
+    public void ParseClass(String path) throws IOException {
 
         int loc=0,
                 cloc=0;
         float dc=0;
         boolean commentBlock=false,
                 commentLine=false;
-        String line="\n";
+        File javaFile = new File(path);
+        BufferedReader reader = new BufferedReader(new FileReader(javaFile));
+        String line=reader.readLine();
 
         if(line.contains("//")) commentLine=true;
         if (line.contains("/*") && !commentBlock) commentBlock = true;
