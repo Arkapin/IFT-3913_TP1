@@ -1,14 +1,19 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class AnalyseDocumentation {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
+        Scanner consoleReader = new Scanner(System.in);
         System.out.println("Veuillez donner le chemin d'accès d'un dossier qui contient du code Java:");
+        String path = consoleReader.nextLine();
+        consoleReader.close();
+        ParseClass(path);
 
     }
 
-    public void ParseClass(String path) throws IOException {
+    public static void ParseClass(String path) throws IOException {
 
         int loc=0,
                 cloc=0;
@@ -16,17 +21,26 @@ public class AnalyseDocumentation {
         boolean commentBlock=false,
                 commentLine=false;
         File javaFile = new File(path);
-        BufferedReader reader = new BufferedReader(new FileReader(javaFile));
-        String line=reader.readLine();
+        Scanner reader = new Scanner(javaFile);
+        String line;
 
-        if(line.contains("//")) commentLine=true;
-        if (line.contains("/*") && !commentBlock) commentBlock = true;
-        if (commentBlock) commentLine=true;
-        if (line.contains("*/") && commentBlock) commentBlock = false;
+        while(reader.hasNextLine()) {
+            line=reader.nextLine();
+            System.out.println(line);
+            if(line.equals("\n")) continue;
 
-        if(commentLine) cloc++;
+            if (line.contains("//")) commentLine = true;
+            if (line.contains("/*") && !commentBlock) commentBlock = true;
+            if (commentBlock) commentLine = true;
+            if (line.contains("*/") && commentBlock) commentBlock = false;
 
-        dc = cloc/loc;
+            loc++;
+            if(commentLine) cloc++;
+        }
+
+        reader.close();
+        System.out.println(loc);
+
     }
 
 }
