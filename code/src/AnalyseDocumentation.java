@@ -9,6 +9,9 @@ public class AnalyseDocumentation {
         System.out.println("Veuillez donner le chemin d'accès d'un dossier qui contient du code Java:");
         String path = consoleReader.nextLine();
         consoleReader.close();
+        
+        testTemporaire();
+        
         ParseClass(path);
 
     }
@@ -46,6 +49,17 @@ public class AnalyseDocumentation {
         System.out.println(cloc);
         System.out.println(dc);
 
+    }
+    
+    private static void testTemporaire() {
+    	java.util.ArrayList<MetriqueClasse> classes = new java.util.ArrayList<MetriqueClasse>();
+
+    	classes.add(new MetriqueClasse() {{chemin = "testPath1"; nomClass = "testNom1"; classe_LOC = 10; classe_CLOC = 2; wmc = 1;}});
+    	classes.add(new MetriqueClasse() {{chemin = "testPath2"; nomClass = "testNom2"; classe_LOC = 10; classe_CLOC = 4; wmc = -1;}});
+    	classes.add(new MetriqueClasse() {{chemin = "testPath3"; nomClass = "testNom3"; classe_LOC = 10; classe_CLOC = 6; wmc = 2;}});
+    	classes.add(new MetriqueClasse() {{chemin = "testPath4"; nomClass = "testNom4"; classe_LOC = 10; classe_CLOC = 8; wmc = -2;}});
+    	
+    	GenerateurSortie.GenererFichierClasses(classes);
     }
 
 }
