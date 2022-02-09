@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 public class AnalyseDocumentation {
     
     //TEST
@@ -8,7 +11,7 @@ public class AnalyseDocumentation {
     //TEST
 
     public static void main(String[] args) throws IOException {
-
+    	getPath();
         Scanner consoleReader = new Scanner(System.in);
         System.out.println("Veuillez donner le chemin d'accès d'un dossier qui contient du code Java:");
         String path = consoleReader.nextLine();
@@ -18,6 +21,27 @@ public class AnalyseDocumentation {
         
         ParseClass(path);
 
+    }
+    
+    public static String getPath() {
+    	
+    	JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "Java & text files", "java", "txt");
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+        	
+        	if(chooser.getSelectedFile().isFile())
+        		System.out.println("You chose to open this file : " + chooser.getSelectedFile().getName());
+        	if(chooser.getSelectedFile().isDirectory())
+        		System.out.println("isDirectory : " + chooser.getSelectedFile().isDirectory());
+        	
+            System.out.println("Path : " + chooser.getSelectedFile().getAbsolutePath());
+        }
+    	
+    	return null;
     }
 
     public static void ParseClass(String path) throws IOException {
