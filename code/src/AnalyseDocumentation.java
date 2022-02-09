@@ -2,6 +2,10 @@ import java.io.*;
 import java.util.Scanner;
 
 public class AnalyseDocumentation {
+    
+    //TEST
+	private static java.util.ArrayList<Metrique> infoClasses = new java.util.ArrayList<Metrique>();
+    //TEST
 
     public static void main(String[] args) throws IOException {
 
@@ -18,8 +22,7 @@ public class AnalyseDocumentation {
 
     public static void ParseClass(String path) throws IOException {
 
-        int loc=0,
-                cloc=0;
+        int loc = 0, cloc = 0;
         float dc;
         boolean commentBlock=false,
                 commentLine;
@@ -29,7 +32,7 @@ public class AnalyseDocumentation {
 
         while(reader.hasNextLine()) {
             commentLine = false;
-            line=reader.nextLine();
+            line = reader.nextLine();
             System.out.println(line);
             if(line.equals("\n")) continue;
 
@@ -44,7 +47,13 @@ public class AnalyseDocumentation {
 
         dc = (float) cloc/loc;
 
-        reader.close();
+        reader.close();        
+
+        // TEST
+    	infoClasses.add(new Metrique(path, path, loc, cloc, -1));    	
+        GenerateurSortie.GenererFichierClasses(infoClasses);
+        // TEST
+        
         System.out.println(loc);
         System.out.println(cloc);
         System.out.println(dc);
@@ -52,12 +61,12 @@ public class AnalyseDocumentation {
     }
     
     private static void testTemporaire() {
-    	java.util.ArrayList<MetriqueClasse> classes = new java.util.ArrayList<MetriqueClasse>();
+    	java.util.ArrayList<Metrique> classes = new java.util.ArrayList<Metrique>();
 
-    	classes.add(new MetriqueClasse() {{chemin = "testPath1"; nomClass = "testNom1"; classe_LOC = 10; classe_CLOC = 2; wmc = 1;}});
-    	classes.add(new MetriqueClasse() {{chemin = "testPath2"; nomClass = "testNom2"; classe_LOC = 10; classe_CLOC = 4; wmc = -1;}});
-    	classes.add(new MetriqueClasse() {{chemin = "testPath3"; nomClass = "testNom3"; classe_LOC = 10; classe_CLOC = 6; wmc = 2;}});
-    	classes.add(new MetriqueClasse() {{chemin = "testPath4"; nomClass = "testNom4"; classe_LOC = 10; classe_CLOC = 8; wmc = -2;}});
+    	classes.add(new Metrique() {{path = "testPath1"; name = "testNom1"; LOC = 10; CLOC = 2; weighted = 1;}});
+    	classes.add(new Metrique() {{path = "testPath2"; name = "testNom2"; LOC = 10; CLOC = 4; weighted = -1;}});
+    	classes.add(new Metrique() {{path = "testPath3"; name = "testNom3"; LOC = 10; CLOC = 6; weighted = 2;}});
+    	classes.add(new Metrique() {{path = "testPath4"; name = "testNom4"; LOC = 10; CLOC = 8; weighted = -2;}});
     	
     	GenerateurSortie.GenererFichierClasses(classes);
     }
