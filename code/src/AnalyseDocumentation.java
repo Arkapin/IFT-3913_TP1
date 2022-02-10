@@ -80,9 +80,6 @@ public class AnalyseDocumentation {
                 classPackage = packagePath.split("\\.");
                 packagePath=packagePath.replace('.','\\');
                 System.out.println(packagePath);
-                for(String pack: classPackage) {
-
-                }
             }
 
             if (line.contains("//")) commentLine = true;
@@ -112,7 +109,24 @@ public class AnalyseDocumentation {
 
     public static void ParsePackage(String path, String[] classPackage, int loc, int doc, int weight)
     {
+        String packagePath;
+        int index;
+        Metrique pack;
+        for(String packName: classPackage) {
+            index = path.lastIndexOf(packName);
+            packagePath = path.substring(0,index+packName.length());
+            System.out.println(packagePath);
+            pack = null;
 
+            for(int i=0;i < infoClasses.size(); i++)
+            {
+                if(infoClasses.get(i).path.equals(packagePath))
+                {
+                    pack = infoClasses.get(i);
+
+                }
+            }
+        }
     }
     
 //    private static void testTemporaire() {
