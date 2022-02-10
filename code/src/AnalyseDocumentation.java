@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -11,15 +12,18 @@ public class AnalyseDocumentation {
     //TEST
 
     public static void main(String[] args) throws IOException {
-    	getPath();
-        Scanner consoleReader = new Scanner(System.in);
-        System.out.println("Veuillez donner le chemin d'accès d'un dossier qui contient du code Java:");
-        String path = consoleReader.nextLine();
-        consoleReader.close();
+    	String path = getPath();
+
+//        Scanner consoleReader = new Scanner(System.in);
+//        System.out.println("Veuillez donner le chemin d'accès d'un dossier qui contient du code Java:");
+//        String path = consoleReader.nextLine();
+//        consoleReader.close();
         
         testTemporaire();
-        
-        ParseClass(path);
+
+//        TEST
+//        if(path!=null) ParseClass(path);
+//        TEST
 
     }
     
@@ -39,6 +43,7 @@ public class AnalyseDocumentation {
         		System.out.println("isDirectory : " + chooser.getSelectedFile().isDirectory());
         	
             System.out.println("Path : " + chooser.getSelectedFile().getAbsolutePath());
+            return chooser.getSelectedFile().getAbsolutePath();
         }
     	
     	return null;
@@ -51,6 +56,8 @@ public class AnalyseDocumentation {
         boolean commentBlock=false,
                 commentLine;
         File javaFile = new File(path);
+        String name = javaFile.getName();
+
         Scanner reader = new Scanner(javaFile);
         String line;
 
@@ -74,7 +81,7 @@ public class AnalyseDocumentation {
         reader.close();        
 
         // TEST
-    	infoClasses.add(new Metrique(path, path, loc, cloc, -1));    	
+    	infoClasses.add(new Metrique(path, name, loc, cloc, -1));
         GenerateurSortie.GenererFichierClasses(infoClasses);
         // TEST
         
