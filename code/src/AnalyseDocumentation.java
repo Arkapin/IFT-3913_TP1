@@ -13,13 +13,13 @@ public class AnalyseDocumentation {
 
     public static void main(String[] args) throws IOException {
     	PathInfo pInfo = getPath();
-    	
+
     	if(pInfo.isFile())
     		ParseClass(pInfo.getPath());
     	else if(pInfo.isDirectory()) {
     		// TODO Add logic to handle recursive search of files
     	}
-    	
+
     	
     	// Output
     	if(!infoClasses.isEmpty())
@@ -60,6 +60,10 @@ public class AnalyseDocumentation {
                 commentLine;
         File javaFile = new File(path);
         String name = javaFile.getName();
+        System.out.println(javaFile.getPath());
+
+        String[] classPackage=null;
+        String packagePath;
 
         Scanner reader = new Scanner(javaFile);
         String line;
@@ -68,7 +72,18 @@ public class AnalyseDocumentation {
             commentLine = false;
             line = reader.nextLine();
             System.out.println(line);
-            if(line.equals("\n")) continue;
+            if(line.trim().equals("")) continue;
+
+            if(line.startsWith("package")) {
+                System.out.println("package trouvé");
+                packagePath=line.substring(7).trim();
+                classPackage = packagePath.split("\\.");
+                packagePath=packagePath.replace('.','\\');
+                System.out.println(packagePath);
+                for(String pack: classPackage) {
+
+                }
+            }
 
             if (line.contains("//")) commentLine = true;
             if (line.contains("/*")) commentBlock = true;
@@ -90,6 +105,13 @@ public class AnalyseDocumentation {
         System.out.println(loc);
         System.out.println(cloc);
         System.out.println(dc);
+
+        if(classPackage!=null) ParsePackage(path,classPackage,loc,cloc,-1);
+
+    }
+
+    public static void ParsePackage(String path, String[] classPackage, int loc, int doc, int weight)
+    {
 
     }
     
