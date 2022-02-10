@@ -107,7 +107,7 @@ public class AnalyseDocumentation {
 
     }
 
-    public static void ParsePackage(String path, String[] classPackage, int loc, int doc, int weight)
+    public static void ParsePackage(String path, String[] classPackage, int loc, int cloc, int weight)
     {
         String packagePath;
         int index;
@@ -122,9 +122,17 @@ public class AnalyseDocumentation {
             {
                 if(infoClasses.get(i).path.equals(packagePath))
                 {
-                    pack = infoClasses.get(i);
-
+                    pack = infoPaquets.get(i);
+                    pack.LOC+=loc;
+                    pack.CLOC+=cloc;
+                    pack.weighted+=weight;
+                    infoClasses.set(i,pack);
                 }
+            }
+            if(pack==null)
+            {
+                pack = new Metrique(packagePath, packName, loc, cloc, weight);
+                infoPaquets.add(pack);
             }
         }
     }
