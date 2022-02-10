@@ -1,50 +1,26 @@
 import java.io.*;
 import java.util.*;
 
-/** */
+/** Handles the program outputs */
 public class GenerateurSortie {
-
-	/** Generates a csv file from an ArrayList of MetriqueClasse */
-	public static void GenererFichierClasses(ArrayList<Metrique> infoClasses) {
-		
-		try {
-			PrintWriter writer = new PrintWriter("classes.csv", "UTF-8");
-			
-			// define the headers for the csv file
-			String baseHeaders = "chemin, class, classe_LOC, classe_CLOC, classe_DC";
-			String additionalHeaders = ", WMC, classe_BC";
-			writer.println( baseHeaders + additionalHeaders );
-			
-			for (Iterator<Metrique> i = infoClasses.iterator(); i.hasNext();) {
-				Metrique c = i.next();				
-
-				// For every package, add its data on a new line
-				writer.println( c.path + ", " + c.name + ", " + c.LOC + ", " + c.CLOC + ", " + c.getDC() + ", " + c.weighted+ ", " + c.getBC());
-			}
-			
-			writer.close();
-			
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+	private static String encodage = "UTF-8";
+	private static String[] valeursClasse = new String[] {"classes.csv", "chemin, class, classe_LOC, classe_CLOC, classe_DC, WMC, classe_BC"};
+	private static String[] valeursPaquet = new String[] {"paquets.csv", "chemin, paquet, paquet_LOC, paquet_CLOC, paquet_DC, WCP, paquet_BC"};
 	
-	}
-	
-	
-	/** Generates a csv file from an ArrayList of MetriquePaquet */
-	public static void GenererFichierPaquets(ArrayList<Metrique> infoPaquets) {
+	/** Generates a csv file from an ArrayList of Metrique objects, need to specify if class, if not, its considered to be a package */
+	public static void GenererFichier(ArrayList<Metrique> metriques, boolean isClass) {
 
 		try {
-			PrintWriter writer = new PrintWriter("paquets.csv", "UTF-8");
+			String fileName = (isClass ? valeursClasse : valeursPaquet)[0];
+			PrintWriter writer = new PrintWriter(fileName, encodage);
 			
 			// define the headers for the csv file
-			String baseHeaders = "chemin, paquet, paquet_LOC, paquet_CLOC, paquet_DC";
-			String additionalHeaders = ", WCP, paquet_BC";
+			String headers = (isClass ? valeursClasse : valeursPaquet)[1];
 			
 			// add headers to file
-			writer.println( baseHeaders + additionalHeaders );
+			writer.println(headers);
 			
-			for (Iterator<Metrique> i = infoPaquets.iterator(); i.hasNext();) {
+			for (Iterator<Metrique> i = metriques.iterator(); i.hasNext();) {
 				Metrique p = i.next();				
 
 				// For every package, add its data on a new line

@@ -1,4 +1,5 @@
 
+/** Object to hold information regarding a class/package metrics */
 public class Metrique {
 
 	public String path = "";
@@ -8,19 +9,17 @@ public class Metrique {
 	public int weighted = 0; // double or int?
 	
 	/** Computes and returns the density level of comments in the package
-	 * Returns -1 if paquet_LOC is equal to 0*/
+	 * Returns -1 if LOC is equal to 0*/
 	public float getDC() {
 		
-		if(LOC == 0) return -1;
-		return (float) CLOC / LOC;
+		return LOC != 0 ? (float) CLOC / LOC : -1;
 	}
 
 	/** Computes and returns the level of documentation of the package
 	 * Returns -1 if wcp is equal to 0*/
 	public double getBC() {
 		
-		if(weighted == 0) return -1;
-		return (float) getDC() / weighted;
+		return weighted != 0 ? (float) getDC() / weighted : -1;
 	}
 	
 
