@@ -12,16 +12,20 @@ public class AnalyseDocumentation {
     //TEST
 
     public static void main(String[] args) throws IOException {
+        System.out.println("Give the path towards a folder that contains Java code");
     	PathInfo pInfo = getPath();
 
-    	if(pInfo.isFile())
-    		ParseClass(pInfo.getPath());
-    	else if(pInfo.isDirectory()) {
-    		// TODO Add logic to handle recursive search of files
-            File f = new File(pInfo.getPath());
-            SearchDirectory(f);
-
+        if(pInfo!=null)
+        {
+            if(pInfo.isFile())
+                ParseClass(pInfo.getPath());
+            else if(pInfo.isDirectory()) {
+                // TODO Add logic to handle recursive search of files
+                File f = new File(pInfo.getPath());
+                SearchDirectory(f);
+            }
     	}
+        else System.out.println("No valid path was given");
 
     	
     	// Output
@@ -71,14 +75,13 @@ public class AnalyseDocumentation {
 
     public static void ParseClass(String path) throws IOException {
 
-        if(!(path.endsWith(".java")||path.endsWith(".txt"))) return;
+        if(!path.endsWith(".java")) return;
 
         int loc = 0, cloc = 0, weight=0;
         boolean commentBlock=false,
                 commentLine;
         File javaFile = new File(path);
         String name = javaFile.getName();
-        System.out.println(javaFile.getPath());
 
         String[] classPackage=null;
         String packagePath;
@@ -89,15 +92,12 @@ public class AnalyseDocumentation {
         while(reader.hasNextLine()) {
             commentLine = false;
             line = reader.nextLine();
-            System.out.println(line);
             if(line.trim().equals("")) continue;
 
             if(line.startsWith("package")) {
-                System.out.println("package trouvé");
                 packagePath=line.substring(7).trim();
                 classPackage = packagePath.split("\\.");
                 packagePath=packagePath.replace('.','\\');
-                System.out.println(packagePath);
             }
 
             if (line.contains("//")) commentLine = true;
@@ -114,10 +114,6 @@ public class AnalyseDocumentation {
         // TEST
     	infoClasses.add(new Metrique(path, name, loc, cloc, weight));
         // TEST
-        
-        System.out.println(loc);
-        System.out.println(cloc);
-        System.out.println(weight);
 
         if(classPackage!=null) ParsePackage(path,classPackage,loc,cloc,weight);
 
@@ -131,7 +127,6 @@ public class AnalyseDocumentation {
         for(String packName: classPackage) {
             index = path.lastIndexOf(packName);
             packagePath = path.substring(0,index+packName.length());
-            System.out.println(packagePath);
             pack = null;
 
             for(int i=0;i < infoPaquets.size(); i++)
