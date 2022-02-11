@@ -14,11 +14,13 @@ public class AnalyseDocumentation {
     public static void main(String[] args) throws IOException {
     	PathInfo pInfo = getPath();
 
-
     	if(pInfo.isFile())
     		ParseClass(pInfo.getPath());
     	else if(pInfo.isDirectory()) {
     		// TODO Add logic to handle recursive search of files
+            File f = new File(pInfo.getPath());
+            SearchDirectory(f);
+
     	}
 
     	
@@ -53,10 +55,25 @@ public class AnalyseDocumentation {
         return chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION ? new PathInfo(chooser.getSelectedFile()) : null;
     }
 
+    public static void SearchDirectory(File f) throws IOException {
+        File[] directory = f.listFiles();
+        assert directory != null;
+        for (File file: directory)
+        {
+            if(file.isDirectory()) {
+                SearchDirectory(file);
+            }
+            else {
+                ParseClass(file.getAbsolutePath());
+            }
+        }
+    }
+
     public static void ParseClass(String path) throws IOException {
 
-        int loc = 0, cloc = 0;
-        float dc;
+        if(!(path.endsWith(".java")||path.endsWith(".txt"))) return;
+
+        int loc = 0, cloc = 0, weight=0;
         boolean commentBlock=false,
                 commentLine;
         File javaFile = new File(path);
@@ -92,19 +109,17 @@ public class AnalyseDocumentation {
             if(commentLine) cloc++;
         }
 
-        dc = (float) cloc/loc;
-
         reader.close();        
 
         // TEST
-    	infoClasses.add(new Metrique(path, name, loc, cloc, -1));
+    	infoClasses.add(new Metrique(path, name, loc, cloc, weight));
         // TEST
         
         System.out.println(loc);
         System.out.println(cloc);
-        System.out.println(dc);
+        System.out.println(weight);
 
-        if(classPackage!=null) ParsePackage(path,classPackage,loc,cloc,-1);
+        if(classPackage!=null) ParsePackage(path,classPackage,loc,cloc,weight);
 
     }
 
