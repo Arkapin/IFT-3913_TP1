@@ -14,6 +14,7 @@ public class AnalyseDocumentation {
     public static void main(String[] args) throws IOException {
     	PathInfo pInfo = getPath();
 
+
     	if(pInfo.isFile())
     		ParseClass(pInfo.getPath());
     	else if(pInfo.isDirectory()) {
@@ -118,15 +119,15 @@ public class AnalyseDocumentation {
             System.out.println(packagePath);
             pack = null;
 
-            for(int i=0;i < infoClasses.size(); i++)
+            for(int i=0;i < infoPaquets.size(); i++)
             {
-                if(infoClasses.get(i).path.equals(packagePath))
+                if(infoPaquets.get(i).path.equals(packagePath))
                 {
                     pack = infoPaquets.get(i);
                     pack.LOC+=loc;
                     pack.CLOC+=cloc;
                     pack.weighted+=weight;
-                    infoClasses.set(i,pack);
+                    infoPaquets.set(i,pack);
                 }
             }
             if(pack==null)
