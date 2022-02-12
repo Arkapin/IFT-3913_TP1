@@ -11,7 +11,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * */
 public class AnalyseDocumentation {
 
+	/**
+	 * {@link java.util.ArrayList} contains {@link Metrique} objects for every class parsed
+	 * */
 	private static ArrayList<Metrique> infoClasses = new ArrayList<Metrique>();
+
+	/**
+	 * {@link java.util.ArrayList} contains {@link Metrique} objects for every package parsed
+	 * */
 	private static ArrayList<Metrique> infoPaquets = new ArrayList<Metrique>();
 	
 	/**
@@ -60,6 +67,8 @@ public class AnalyseDocumentation {
 
     /** 
      * Recursively searches a file's directory to find other java files in sub-folders
+     * @param f {@link java.io.File} from which the search will start
+	 * @throws java.io.IOException if we can't read/write a file
      * */
     public static void searchDirectory(File f) throws IOException {
         File[] directory = f.listFiles();
@@ -80,7 +89,12 @@ public class AnalyseDocumentation {
             }
         }
     }
-
+    
+    /** 
+     * Parses a class file and computes metrics on it. Updates global list of metrics for classes
+     * @param path {@link String} containing the path of the class
+	 * @throws java.io.IOException if we can't read/write a file
+     * */
     public static void parseClass(String path) throws IOException {
 
         if(!path.endsWith(".java")) return;
@@ -124,7 +138,15 @@ public class AnalyseDocumentation {
         if(classPackage!=null) parsePackage(path, classPackage, loc, cloc, weight);
 
     }
-
+    
+    /** 
+     * Parses a package and computes metrics on it. Updates global list of metrics for packages
+     * @param path {@link String} containing the path of the class
+     * @param classPackage {@link String String[]} containing the classes of the package
+     * @param loc {@link Integer} containing the number of lines of code of the package so far
+     * @param cloc {@link Integer} containing the number of lines of code and lines of comments of the package so far
+     * @param weight {@link Integer} containing the weight of the package
+     * */
     public static void parsePackage(String path, String[] classPackage, int loc, int cloc, int weight)
     {
         String packagePath;
