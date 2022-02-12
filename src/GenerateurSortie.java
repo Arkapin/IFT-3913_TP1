@@ -80,6 +80,7 @@ public class GenerateurSortie {
         
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.setDialogTitle((isClass ? valeursClasse : valeursPaquet)[csvName]);
+        chooser.setApproveButtonText("Save");
         return chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION ? new PathInfo(chooser.getSelectedFile()) : null;
     }
 	
