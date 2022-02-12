@@ -1,13 +1,31 @@
 import java.io.*;
 import java.util.*;
 
-/** Handles the program outputs */
+/**
+ * Handles the program outputs
+ * */
 public class GenerateurSortie {
+	
+	/**
+	 * Encoding used for the output csv files
+	 * */
 	private static String encodage = "UTF-8";
+	
+	/**
+	 * Array containing info used in the generation of the classes.csv file
+	 * */
 	private static String[] valeursClasse = new String[] {"classes.csv", "chemin, class, classe_LOC, classe_CLOC, classe_DC, WMC, classe_BC"};
+	
+	/**
+	 * Array containing info used in the generation of the paquets.csv file
+	 * */
 	private static String[] valeursPaquet = new String[] {"paquets.csv", "chemin, paquet, paquet_LOC, paquet_CLOC, paquet_DC, WCP, paquet_BC"};
 	
-	/** Generates a csv file from an ArrayList of Metrique objects, need to specify if class, if not, its considered to be a package */
+	/**
+	 * Generates a csv file from an ArrayList of Metrique objects, need to specify if class, if not, its considered to be a package
+	 * @param metriques {@link ArrayList} of {@link Metrique} objects to use for the csv
+	 * @param isClass {@link Boolean} indicating whether to generate a class csv or a package csv
+	 * */
 	public static void GenererFichier(ArrayList<Metrique> metriques, boolean isClass) {
 
 		try {
