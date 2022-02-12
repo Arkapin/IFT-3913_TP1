@@ -23,5 +23,5 @@
 hs_err_pid*
 /bin/
 
-code/classes.csv
-code/paquets.csv
+classes.csv
+paquets.csv

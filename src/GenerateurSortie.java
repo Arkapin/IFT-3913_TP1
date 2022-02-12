@@ -21,7 +21,7 @@ public class GenerateurSortie {
 			writer.println(headers);
 			
 			for (Iterator<Metrique> i = metriques.iterator(); i.hasNext();) {
-				Metrique p = i.next();				
+				Metrique p = i.next();
 
 				// For every package, add its data on a new line
 				writer.println( p.path + ", " + p.name + ", " + p.LOC + ", " + p.CLOC + ", " + p.getDC() + ", " + p.weighted + ", " + p.getBC());

@@ -79,13 +79,7 @@ public class AnalyseDocumentation {
                 searchDirectory(file);
             }
             else {
-            	String fileName = file.getName();
-
-            	int i = fileName.lastIndexOf('.');
-            	if (i > 0) {
-            		if(fileName.substring(i + 1) == "java")
-            			parseClass(file.getAbsolutePath());            			
-            	}
+            	parseClass(file.getAbsolutePath());
             }
         }
     }
