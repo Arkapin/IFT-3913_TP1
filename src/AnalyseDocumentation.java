@@ -93,7 +93,7 @@ public class AnalyseDocumentation {
 
         if(!path.endsWith(".java")) return;
 
-        int loc = 0, cloc = 0, weight = -1;
+        int loc = 0, cloc = 0, weight = 0;
         boolean commentBlock = false, commentLine;
         File javaFile = new File(path);
         String name = javaFile.getName();
