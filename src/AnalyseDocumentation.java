@@ -133,11 +133,11 @@ public class AnalyseDocumentation {
 
         reader.close();
 
-        if(weight<=0) weight=1;
+        if(weight <= 0) weight = 1;
 
     	infoClasses.add(new Metrique(path, name, loc, cloc, weight));
 
-        if(classPackage!=null) parsePackage(path, classPackage, loc, cloc, weight);
+        if(classPackage != null) parsePackage(path, classPackage, loc, cloc, weight);
 
     }
     
