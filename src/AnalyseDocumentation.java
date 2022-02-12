@@ -61,6 +61,7 @@ public class AnalyseDocumentation {
         
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         chooser.setFileFilter(filter);
+        chooser.setDialogTitle("Choisir le fichier/dossier à analyser");
         
         return chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION ? new PathInfo(chooser.getSelectedFile()) : null;
     }
