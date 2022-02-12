@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  * Handles the program outputs
  * */
@@ -22,6 +25,16 @@ public class GenerateurSortie {
 	private static String[] valeursPaquet = new String[] {"paquets.csv", "chemin, paquet, paquet_LOC, paquet_CLOC, paquet_DC, WCP, paquet_BC"};
 	
 	/**
+	 * {@link Integer} used to fetch the file name from the array
+	 * */
+	private static int csvName = 0;
+
+	/**
+	 * {@link Integer} used to fetch the file headers from the array
+	 * */
+	private static int csvHeaders = 1;
+	
+	/**
 	 * Generates a csv file from an ArrayList of Metrique objects, need to specify if class, if not, its considered to be a package
 	 * @param metriques {@link ArrayList} of {@link Metrique} objects to use for the csv
 	 * @param isClass {@link Boolean} indicating whether to generate a class csv or a package csv
@@ -29,11 +42,16 @@ public class GenerateurSortie {
 	public static void GenererFichier(ArrayList<Metrique> metriques, boolean isClass) {
 
 		try {
-			String fileName = (isClass ? valeursClasse : valeursPaquet)[0];
+			PathInfo pInfo = getPath(isClass);
+			String path = "";
+			
+			if(pInfo != null)
+				path = pInfo.getPath();
+			String fileName = path + "\\" + (isClass ? valeursClasse : valeursPaquet)[csvName];
 			PrintWriter writer = new PrintWriter(fileName, encodage);
 			
 			// define the headers for the csv file
-			String headers = (isClass ? valeursClasse : valeursPaquet)[1];
+			String headers = (isClass ? valeursClasse : valeursPaquet)[csvHeaders];
 			
 			// add headers to file
 			writer.println(headers);
@@ -51,5 +69,19 @@ public class GenerateurSortie {
 			e.printStackTrace();
 		}
 	}
+    
+    /** 
+     * Prompts user to select a directory where to save the csv to
+     * @return a {@link PathInfo PathInfo} object containing the path selected by the user, or null if operation was canceled
+	 * @param isClass {@link Boolean} indicating whether to generate a class csv or a package csv
+     * */
+    private static PathInfo getPath(boolean isClass) {
+    	
+    	JFileChooser chooser = new JFileChooser();
+        
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setDialogTitle((isClass ? valeursClasse : valeursPaquet)[csvName]);
+        return chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION ? new PathInfo(chooser.getSelectedFile()) : null;
+    }
 	
 }
