@@ -1,5 +1,7 @@
 
-/** Object to hold information regarding a class/package metrics */
+/**
+ * Object to hold information regarding a class/package metrics
+ * */
 public class Metrique {
 
 	public String path = "";
@@ -8,25 +10,38 @@ public class Metrique {
 	public int CLOC = 0;
 	public int weighted = 0; // double or int?
 	
-	/** Computes and returns the density level of comments in the package
-	 * Returns -1 if LOC is equal to 0*/
+	/**
+	 * Computes and returns the density level of comments in the package
+	 * @return -1 if LOC is equal to 0, otherwise, DC value
+	 * */
 	public float getDC() {
 		
 		return LOC != 0 ? (float) CLOC / LOC : -1;
 	}
 
-	/** Computes and returns the level of documentation of the package
-	 * Returns -1 if wcp is equal to 0*/
+	/**
+	 * Computes and returns the level of documentation of the package
+	 * @return -1 if wcp is equal to 0, otherwise, BC value
+	 * */
 	public double getBC() {
 		
 		return weighted != 0 ? (float) getDC() / weighted : -1;
 	}
 	
 
-	/** Constructor */
+	/**
+	 * Constructor
+	 * */
 	public Metrique() {}
 	
-	/** Constructor */
+	/**
+	 * Constructor
+     * @param path {@link String} containing the path of the class/package
+     * @param name {@link String} of the name of the class/package
+     * @param loc {@link Integer} containing the number of lines of code of the class/package
+     * @param cloc {@link Integer} containing the number of lines of code and lines of comments of the class/package
+     * @param weight {@link Integer} containing the weight of the class/package
+	 * */
 	public Metrique(String path, String name, int loc, int cloc, int weighted) {
 		this.path = path;
 		this.name = name;
