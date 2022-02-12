@@ -42,11 +42,11 @@ public class Metrique {
      * @param cloc {@link Integer} containing the number of lines of code and lines of comments of the class/package
      * @param weight {@link Integer} containing the weight of the class/package
 	 * */
-	public Metrique(String path, String name, int loc, int cloc, int weighted) {
+	public Metrique(String path, String name, int loc, int cloc, int weight) {
 		this.path = path;
 		this.name = name;
 		this.LOC = loc;
 		this.CLOC = cloc;
-		this.weighted = weighted;
+		this.weighted = weight;
 	}
 }
