@@ -1,0 +1,29 @@
+chemin, paquet, paquet_LOC, paquet_CLOC, paquet_DC, WCP, paquet_BC
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org, org, 191044, 100032, 0.52360713, 27194, 1.925451033457648E-5
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree, jfree, 191044, 100032, 0.52360713, 27194, 1.925451033457648E-5
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\chart, chart, 138084, 69931, 0.50643814, 19347, 2.617657264636364E-5
+C:\Users\Pi, annotations;, 7679, 3739, 0.48691237, 777, 6.266568670980632E-4
+C:\, api;, 7801, 3922, 0.50275606, 903, 5.567619809880853E-4
+C:\U, axis;, 98065, 45874, 0.46779177, 12698, 3.6839799577137455E-5
+C:\Us, block;, 29860, 14552, 0.48734093, 3532, 1.3797874271403998E-4
+C:\Users, encoders;, 32312, 15692, 0.48564002, 4136, 1.1741779599105939E-4
+C:\Use, entity;, 19945, 10535, 0.52820253, 2336, 2.261141053168103E-4
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\chart\plot, plot, 12969, 6664, 0.5138407, 1795, 2.8626222047023475E-4
+C:\User, compass;, 10871, 5426, 0.4991261, 1394, 3.58053162926808E-4
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\chart\renderer, renderer, 30849, 14637, 0.47447243, 4285, 1.1072868801420555E-4
+C:, xy;, 40789, 20088, 0.49248573, 4922, 1.0005805233959109E-4
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\chart\swing, swing, 3421, 1548, 0.45249927, 327, 0.0013837898150086403
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\chart\text, text, 968, 565, 0.5836777, 105, 0.005558835342526436
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\data, data, 41680, 24076, 0.57763916, 5931, 9.739321831148118E-5
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\data\json, json, 724, 401, 0.5538674, 100, 0.00553867407143116
+C:\Users\, resources;, 369, 297, 0.80487806, 24, 0.03353658691048622
+C:\Users\P, statistics;, 8055, 3956, 0.49112353, 915, 5.367470439523458E-4
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\main\java\org\jfree\data\time, time, 854, 520, 0.6088993, 113, 0.005388489458709955
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org, org, 64702, 24049, 0.37168866, 4443, 8.365713438251987E-5
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org\jfree, jfree, 64702, 24049, 0.37168866, 4443, 8.365713438251987E-5
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org\jfree\chart, chart, 36518, 14021, 0.38394764, 2055, 1.8683583766687661E-4
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org\jfree\chart\plot, plot, 3741, 1553, 0.41512963, 168, 0.002471009735018015
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org\jfree\chart\renderer, renderer, 8614, 3267, 0.37926632, 594, 6.384954904206097E-4
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org\jfree\chart\text, text, 347, 152, 0.43804035, 16, 0.027377521619200706
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org\jfree\data, data, 21515, 7504, 0.34877992, 1911, 1.825117360567674E-4
+C:\Users\Pierre-Paul Hamon\Documents\GitHub\jfreechart\src\test\java\org\jfree\data\time, time, 665, 267, 0.40150377, 41, 0.00979277491569519
