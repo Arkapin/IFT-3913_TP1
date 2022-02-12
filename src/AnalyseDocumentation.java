@@ -39,7 +39,10 @@ public class AnalyseDocumentation {
                 searchDirectory(f);
             }
     	}
-        else System.out.println("No valid path was given");
+        else {
+            System.out.println("No valid path was given");
+            return;
+        }
 
     	
     	// Output
@@ -47,6 +50,8 @@ public class AnalyseDocumentation {
             GenerateurSortie.GenererFichier(infoClasses, true);
     	if(!infoPaquets.isEmpty())
             GenerateurSortie.GenererFichier(infoPaquets, false);
+
+        System.out.println("The analysis of the folder is complete");
 
     }
     
@@ -94,7 +99,7 @@ public class AnalyseDocumentation {
 
         if(!path.endsWith(".java")) return;
 
-        int loc = 0, cloc = 0, weight = 0;
+        int loc = 0, cloc = 0, weight = -1;
         boolean commentBlock = false, commentLine;
         File javaFile = new File(path);
         String name = javaFile.getName();
@@ -120,13 +125,15 @@ public class AnalyseDocumentation {
             if (commentBlock) commentLine = true;
             if (line.contains("*/")) commentBlock = false;
 
-            if(line.contains("{")) weight++;
+            if(line.contains("{")&&!commentBlock) weight++;
 
             loc++;
             if(commentLine) cloc++;
         }
 
-        reader.close();        
+        reader.close();
+
+        if(weight<0) weight=0;
 
     	infoClasses.add(new Metrique(path, name, loc, cloc, weight));
 
