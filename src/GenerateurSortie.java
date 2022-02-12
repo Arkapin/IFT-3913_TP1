@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Handles the program outputs

@@ -62,7 +62,7 @@ public class AnalyseDocumentation {
     public static PathInfo getPath() {
     	
     	JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Java & text files", "java", "txt");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Java files", "java");
         
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         chooser.setFileFilter(filter);
